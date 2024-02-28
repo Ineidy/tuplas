@@ -1,12 +1,19 @@
-nombre =input("Escribe tu nombre completo: ")
-edad =input("Escribe tu edad: ")
-cursos =input("Escribe tus cursos: ")
-direccion =input("Escribe tu direccion: ")
-ExperienciaLaboral =input("Escribe tu experiencia laboral: ")
+nombre = input("ingrese su nombre: ")
+edad = input("ingrese su edad: ")
+altura = input("ingrese su altura: ")
+peso = input("ingrese su peso: ")
+infoPersonal = (nombre, edad, altura, peso)
+tup = tuple(infoPersonal)
+print(infoPersonal)
 
-informacion= tuple((nombre, edad, cursos, direccion, ExperienciaLaboral))
-print(informacion)
 
-#muchos estaban diciendo que eran 4 tuplas en total pero segun yo es asi jaja 
-#ya que una tupla almacena toda la informacion y es lo que se intenta
-#que en una sola tupla este toda la informacion de una persona
+
+experiencia_lab=[]
+Experiencialab = input("ESCRIBE SI TIENES EXPERIENCIA LABORAL 1.si 2.no: ")
+if Experiencialab == 2:
+    print("NO TIENES EXPERIENCIA LABORAL")
+else:
+    experienciala=(input("Cual es tu experiencia labora: "))
+    experiencia_lab.append(experienciala)
+experienciatot=tuple(experiencia_lab)
+print(f'tu experiencia laboral es: {experienciatot}')
