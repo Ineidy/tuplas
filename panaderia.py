@@ -1,6 +1,13 @@
-menu_general = {
+print("ANTES DE SELECCIONAR UN PRODUCTO REVISA LA PARTE DE ABAJO DE LA LISTA!!")
+print("YA QUE SI HAY ALGUNA PROMOCION VIGENTE PARA ALGUN PRODUCTO!!")
+print()
+print()
+
+menu_general = dict({
     "pan_dulce": {
-        "productos": [
+        "productos": list([
+
+        
             {"nombre": "Croissant de almendra", "precio": 6500},
             {"nombre": "Donas glaseadas", "precio": 3500},
             {"nombre": "Conchas de vainilla", "precio": 4200},
@@ -10,16 +17,15 @@ menu_general = {
             {"nombre": "Roles de canela", "precio": 5300},
             {"nombre": "Trenza de frutas", "precio": 7000},
             {"nombre": "Bollo de chocolate", "precio": 4800},
-            {"nombre": "Muffin de arándanos", "precio": 4200}
-        ],
-        "promociones": [
-            {"codigo": 1, "nombre": "Descuento del 15%", "precio": 2600},
-            {"codigo": 2, "nombre": "3 por 2", "precio": 8400}
-        ]
+            {"nombre": "Muffin de arándanos", "precio": 4200},
+            {"nombre": "ATENCION! HAY UN DESCUENTO DEL 15% PARA EL PRODUCTO PALMERITAS DE CHOCOLATE", "precio": 5100},
+            {"nombre": "ATENCION! HAY UNA PROMOCION DE 3 POR 2 EN EL PRODUCTO TRENZAS DE FRUTAS", "precio": 14000}
+        ]),
     },
     "pan_salado": {
-        "productos": [
-            {"nombre": "Baguette de ajo", "precio": 8500},
+        "productos": list([
+      
+            {"nombre": "Baguette de ajo", "precio": 8500,},
             {"nombre": "Pan integral con semillas", "precio": 9000},
             {"nombre": "Fougasse de olivas", "precio": 9500},
             {"nombre": "Pretzel de queso", "precio": 7500},
@@ -28,15 +34,16 @@ menu_general = {
             {"nombre": "Pita de trigo", "precio": 6000},
             {"nombre": "Bollos suizos", "precio": 7200},
             {"nombre": "Pan de avena", "precio": 8500},
-            {"nombre": "Panecillos de aceitunas", "precio": 9200}
-        ],
-        "promociones": [
-            {"codigo": 3, "nombre": "Descuento del 10%", "precio": 6750},
-            {"codigo": 4, "nombre": "2 por 1", "precio": 16000}
-        ]
+            {"nombre": "Panecillos de aceitunas", "precio": 9200},
+            {"nombre": "ATENCION! HAY UN DESCUENTO DEL 20% PARA EL PRODUCTO PANECILLOS DE ACEITUNAS", "precio": 7350},
+            {"nombre": "ATENCION! HAY UNA PROMOCION DEL 2 POR 1 PARA EL PRODUCTO PAN INTEGRAL CON SEMILLAS", "precio": 9000}
+
+        ]),
+        
     },
     "postres": {
-        "productos": [
+        "productos": list([
+            
             {"nombre": "Tiramisú", "precio": 15000},
             {"nombre": "Cheesecake de fresa", "precio": 10000},
             {"nombre": "Mousse de chocolate", "precio": 30000},
@@ -46,14 +53,13 @@ menu_general = {
             {"nombre": "Crepes rellenos", "precio": 20000},
             {"nombre": "Helado artesanal", "precio": 3500},
             {"nombre": "Flan de caramelo", "precio": 8000},
-            {"nombre": "Coulant de chocolate", "precio": 6500}
-        ],
-        "promociones": [
-            {"codigo": 5, "nombre": "2 por 1, lleve 2 por tan solo", "precio": 16400},
-            {"codigo": 6, "nombre": "Descuento del 20%", "precio": 16000}
-        ]
+            {"nombre": "Coulant de chocolate", "precio": 6500},
+            {"nombre": "ATENCION! HAY UN DESCUENTO DEL 50% PARA EL PRODUCTO MOUSSE DE CHOCOLATE", "precio": 15000},
+            {"nombre": "ATENCION! HAY UN DESCUENTO DEL 15% PARA EL PRODUCTO CREPES RELLENOS", "precio": 17000}
+        ]),
+        
     }
-}
+})
 
 print("¿Qué vas a pedir hoy?:\n1) Pan Dulce\n2) Pan Salado\n3) Postres")
 opcion = int(input("Ingrese la opción que desea (1, 2 o 3): "))
@@ -71,18 +77,22 @@ else:
 print(f"La opción elegida es: {categoria}")
 
 print(f"Productos en la categoría {categoria}:")
-for producto in menu_general[categoria]["productos"]:
-    print(f'{producto["nombre"]}: {producto["precio"]} pesos')
+for i, producto in enumerate(menu_general[categoria]["productos"]):
+    print(f'{i}: {producto["nombre"]}: {producto["precio"]} pesos')
 
 opcion_producto = int(input("Ingrese el número del producto que desea comprar: "))
 producto_seleccionado = menu_general[categoria]["productos"][opcion_producto]
 nombre_producto = producto_seleccionado["nombre"]
 precio_producto = producto_seleccionado["precio"]
 
-dinero = int(input("Ingrese la cantidad de dinero disponible: "))
-vueltos = dinero - precio_producto
+cantidad = int(input(f"Ingrese el numero de productos que desea comprar de {nombre_producto}: "))
 
-if dinero >= precio_producto:
-    print(f'Usted compró el producto {nombre_producto} con un valor de {precio_producto} pesos, y sus vueltos son {vueltos} pesos.')
+precio_final = cantidad * precio_producto
+
+dinero = float(input(f"Ha seleccionado el producto {nombre_producto} con un valor de {precio_producto}. Ingrese la cantidad de dinero disponible: "))
+vueltos = dinero - precio_final
+
+if vueltos >= 0:
+    print(f'Usted compró el producto {nombre_producto} con un valor de {precio_final} pesos, y sus vueltos son {vueltos} pesos.')
 else:
     print(f'Lo siento, no tiene suficiente dinero para comprar el producto {nombre_producto}. Le falta un total de {-vueltos} pesos.')
